@@ -1,0 +1,7 @@
+name: {{globalAppName}}-{{application}}
+runtime: nodejs
+description: Configure OpenFaas application for {{globalAppName}}.
+template:
+  openFaasAdminPassword:
+    description: The admin password for OpenFaas. (username is `chui-openfaas`)
+    secret: true
