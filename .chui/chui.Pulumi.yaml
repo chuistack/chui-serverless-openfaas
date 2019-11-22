@@ -1,6 +1,6 @@
 name: {{globalAppName}}-{{application}}
 runtime: nodejs
-description: Configure OpenFaas application for {{globalAppName}}.
+description: Deploy OpenFaas to the {{globalAppName}} cluster.
 template:
   openFaasAdminPassword:
     description: The admin password for OpenFaas. (username is `chui-openfaas`)
