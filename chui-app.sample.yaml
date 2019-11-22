@@ -3,3 +3,4 @@ source: git@github.com:chuistack/chui-serverless-openfaas.git
 type: serverless
 variant: openfaas
 name: {{globalAppName}}-{{application}}
+pulumiOrgName: {{pulumiOrgName}}
