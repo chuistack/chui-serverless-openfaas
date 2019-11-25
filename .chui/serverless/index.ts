@@ -1,24 +1,17 @@
 import * as k8s from "@pulumi/kubernetes";
 import {
+    ENDPOINT,
     OPENFAAS_ADMIN_PASSWORD,
     OPENFAAS_ADMIN_SECRET,
     OPENFAAS_FUNCTIONS_NAMESPACE,
     OPENFAAS_SYSTEM_NAMESPACE,
-    ENDPOINT,
     RELEASE_NAME,
     TLS_SECRET,
 } from "../constants";
-import {getStack, StackReference} from "@pulumi/pulumi";
 import {Namespace} from "@pulumi/kubernetes/core/v1";
 import {Chui} from "@chuistack/chui-lib";
 
-const chui = Chui.Config.loadCurrentConfig();
-const core = new StackReference(`${chui.pulumiOrgName}/${chui.globalAppName}-core/${getStack()}`);
-
-export const PRODUCTION_CLUSTER_ISSUER_ANNOTATION = core.getOutput('productionClusterIssuerAnnotation');
-export const STAGING_CLUSTER_ISSUER_ANNOTATION = core.getOutput('stagingClusterIssuerAnnotation');
-export const INGRESS_CLASS_ANNOTATION = core.getOutput('ingressClassAnnotation');
-
+const {Ingress} = Chui.App;
 
 /**
  * Prepare the namespaces as described in this template:
@@ -97,12 +90,12 @@ const configureOpenFaas = () => {
                 "ingress": {
                     "enabled": true,
                     "annotations": {
-                        ...INGRESS_CLASS_ANNOTATION,
+                        ...Ingress.getIngressClassAnnotation(),
                         ...(
-                            chui.environment === "production" ?
-                                PRODUCTION_CLUSTER_ISSUER_ANNOTATION :
-                                STAGING_CLUSTER_ISSUER_ANNOTATION
-                        )
+                            Chui.Environment.getEnv() === "production" ?
+                                Ingress.getProductionClusterIssuerAnnotation() :
+                                Ingress.getStagingClusterIssuerAnnotation()
+                        ),
                     },
                     "hosts": [
                         {

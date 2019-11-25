@@ -2,5 +2,6 @@ version: 0.1.0
 source: git@github.com:chuistack/chui-serverless-openfaas.git
 type: serverless
 variant: openfaas
-name: {{globalAppName}}-{{application}}
+name: {{application}}
+globalAppName: {{globalAppName}}
 pulumiOrgName: {{pulumiOrgName}}
