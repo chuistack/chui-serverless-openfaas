@@ -1,5 +1,7 @@
 {
-    "name": "chui-core",
+    "name": "chui-serverless-openfaas",
+    "description": "Deploys OpenFaas to a Chui cluster.",
+    "license": "MIT",
     "devDependencies": {
         "@types/node": "latest"
     },
