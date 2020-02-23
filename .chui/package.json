@@ -1,15 +1,18 @@
 {
     "name": "chui-serverless-openfaas",
     "description": "Deploys OpenFaas to a Chui cluster.",
+    "repository": {
+        "url": "https://github.com/chuistack/chui-serverless-openfaas"
+    },
     "license": "MIT",
     "devDependencies": {
-        "@types/node": "latest"
+        "@types/node": "^13.7.4"
     },
     "dependencies": {
         "@chuistack/chui-lib": "^0.1.2",
-        "@kubernetes/client-node": "^0.10.2",
-        "@pulumi/digitalocean": "^0.18.13",
-        "@pulumi/kubernetes": "^1.0.0",
-        "@pulumi/pulumi": "^1.0.0"
+        "@kubernetes/client-node": "^0.11.1",
+        "@pulumi/digitalocean": "^1.6.0",
+        "@pulumi/kubernetes": "^1.5.4",
+        "@pulumi/pulumi": "^1.11.0"
     }
 }
